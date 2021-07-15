@@ -1,0 +1,11 @@
+<div class="search-results-list">
+  <ul *ngIf="searchResults.length > 0">
+    <li *ngFor="let item of searchResults" class="list-group">
+      <div class="list-group-item list-group-item-action flex-column align-items-start">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1"><strong><a href="{{ item.html_url }}" target="_blank">{{ item.name }}</a></strong></h5>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
