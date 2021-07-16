@@ -7,6 +7,10 @@ import { SearchService } from '../search/search-service'
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })
+
+/*
+* Main page of the Sample application
+*/
 export class SearchComponent implements OnInit {
 
   public searchControl: FormControl = new FormControl();
@@ -19,6 +23,7 @@ export class SearchComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // Action to call the API
   onSubmit(): void {
     if (!this.searchControl.value || this.searchControl.value.trim() === '') {
       return;
@@ -26,6 +31,7 @@ export class SearchComponent implements OnInit {
     this.searchAllPublicRepositories(this.searchControl.value);
   }
 
+  // query creation and api call
   public searchAllPublicRepositories(query:string){
     const queryString = 'q=' + encodeURIComponent(query) + '&sort=stars&order=desc';
     this.apiService.get(this.SEARCH_REPO + queryString);

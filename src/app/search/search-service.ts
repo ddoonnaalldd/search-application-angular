@@ -5,6 +5,12 @@ import { Items } from './search-model';
 @Injectable({
   providedIn: 'root'
 })
+
+/*
+* API Service for Search
+* Uses 'search/repositories' API
+* ref: https://docs.github.com/en/rest/reference/search#search-repositories
+*/
 export class SearchService {
 
   private SERVER_URL = 'https://api.github.com/';
@@ -13,6 +19,7 @@ export class SearchService {
 
   constructor(private httpClient: HttpClient) {}
 
+  // function to call the API
   public get(query:string){
     console.log(this.SERVER_URL + query);
     return this.httpClient.get(this.SERVER_URL  + query)
@@ -21,6 +28,7 @@ export class SearchService {
     });
   }
 
+  // parses and sets the retrieved data
   public setServiceResponse(data:any){
     for (let i of data.items) {
         let item :any = [];
@@ -30,6 +38,7 @@ export class SearchService {
     }
   }
 
+  // retrieves stored local data
   public getServiceResponse(){
     return this.items;
   }
